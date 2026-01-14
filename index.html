@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sensor Monitor">
+    <meta name="theme-color" content="#0A0E21">
+
+    <title>Sensor Monitor</title>
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <h1 class="navbar-title">Sensor Monitor</h1>
+            <button id="refreshBtn" class="refresh-btn" aria-label="Refresh">
+                <svg class="refresh-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container" id="mainContent">
+            <!-- Loading State -->
+            <div id="loadingView" class="state-view hidden">
+                <div class="spinner"></div>
+                <p class="state-text">Loading sensor data...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorView" class="state-view hidden">
+                <svg class="state-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L1 21h22M12 6l7.53 13H4.47M11 10v4h2v-4m-2 6v2h2v-2"/>
+                </svg>
+                <h2 class="state-title">Unable to Load Data</h2>
+                <p class="state-message" id="errorMessage"></p>
+                <button class="retry-btn" id="retryBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                    </svg>
+                    Try Again
+                </button>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyView" class="state-view hidden">
+                <svg class="state-icon state-icon-dim" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                </svg>
+                <h2 class="state-title">No Data Available</h2>
+                <p class="state-text">Pull down to refresh</p>
+            </div>
+
+            <!-- Data Display -->
+            <div id="dataView" class="data-view hidden">
+                <!-- Azart Group (shown first) -->
+                <div class="sensor-card azart-card">
+                    <h2 class="sensor-title">АЗАРТ</h2>
+                    <div class="sensor-grid">
+                        <div class="sensor-item">
+                            <span class="sensor-label">A</span>
+                            <span class="sensor-value" id="azart-a">-</span>
+                            <span class="sensor-unit">V</span>
+                        </div>
+                        <div class="sensor-item">
+                            <span class="sensor-label">B</span>
+                            <span class="sensor-value" id="azart-b">-</span>
+                            <span class="sensor-unit">V</span>
+                        </div>
+                        <div class="sensor-item">
+                            <span class="sensor-label">C</span>
+                            <span class="sensor-value" id="azart-c">-</span>
+                            <span class="sensor-unit">V</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brama Group (shown second) -->
+                <div class="sensor-card brama-card">
+                    <h2 class="sensor-title">БРАМА</h2>
+                    <div class="sensor-grid">
+                        <div class="sensor-item">
+                            <span class="sensor-label">A</span>
+                            <span class="sensor-value" id="brama-a">-</span>
+                            <span class="sensor-unit">V</span>
+                        </div>
+                        <div class="sensor-item">
+                            <span class="sensor-label">B</span>
+                            <span class="sensor-value" id="brama-b">-</span>
+                            <span class="sensor-unit">V</span>
+                        </div>
+                        <div class="sensor-item">
+                            <span class="sensor-label">C</span>
+                            <span class="sensor-value" id="brama-c">-</span>
+                            <span class="sensor-unit">V</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Auto-refresh Indicator -->
+                <div class="auto-refresh-indicator">
+                    <svg class="refresh-icon-small rotating" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                    </svg>
+                    <span>Auto-refreshing every 30s</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #0A0E21;
+    color: #ffffff;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    position: relative;
+}
+
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #0A0E21;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.refresh-btn {
+    position: absolute;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: #ffffff;
+    opacity: 0.8;
+    transition: opacity 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.refresh-btn:active {
+    transform: scale(0.95);
+}
+
+.refresh-btn.spinning .refresh-icon {
+    animation: spin 1s linear infinite;
+}
+
+.refresh-icon {
+    width: 22px;
+    height: 22px;
+}
+
+/* Container */
+.container {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* State Views */
+.state-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    min-height: 400px;
+}
+
+.state-view.hidden {
+    display: none;
+}
+
+/* Loading State */
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 193, 7, 0.2);
+    border-top-color: #FFC107;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.state-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+/* Error State */
+.state-icon {
+    width: 80px;
+    height: 80px;
+    color: #FFC107;
+    margin-bottom: 24px;
+}
+
+.state-icon-dim {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.state-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.state-message {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 400px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.retry-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #FFC107;
+    color: #ffffff;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.retry-btn:active {
+    transform: scale(0.98);
+}
+
+.retry-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Data View */
+.data-view {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.data-view.hidden {
+    display: none;
+}
+
+/* Sensor Cards */
+.sensor-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.azart-card {
+    border-left: 4px solid #FFC107;
+}
+
+.brama-card {
+    border-left: 4px solid #1E88E5;
+}
+
+.sensor-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.sensor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.sensor-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sensor-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sensor-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    font-variant-numeric: tabular-nums;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.sensor-unit {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+}
+
+/* Auto-refresh Indicator */
+.auto-refresh-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.refresh-icon-small {
+    width: 14px;
+    height: 14px;
+}
+
+.rotating {
+    animation: spin 2s linear infinite;
+}
+
+/* Pull to Refresh */
+.ptr-element {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    transform: translateY(-100%);
+    transition: transform 0.2s;
+}
+
+.ptr-pulling .ptr-element {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 16px;
+    }
+
+    .sensor-grid {
+        gap: 12px;
+    }
+
+    .sensor-item {
+        padding: 12px 8px;
+    }
+
+    .sensor-value {
+        font-size: 20px;
+    }
+
+    .sensor-card {
+        padding: 20px 16px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+/* Touch Feedback */
+button:active {
+    opacity: 0.7;
+}
+
+/* Smooth Transitions */
+.sensor-value,
+.state-view {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* iOS Safe Area Support */
+@supports (padding-top: env(safe-area-inset-top)) {
+    .navbar {
+        padding-top: max(12px, env(safe-area-inset-top));
+    }
+
+    .container {
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+}
