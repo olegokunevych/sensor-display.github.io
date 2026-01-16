@@ -1,11 +1,11 @@
 // Service Worker for PWA offline support
 const CACHE_NAME = 'sensor-monitor-v1';
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/styles.css',
-    '/app.js',
-    '/manifest.json'
+    './',
+    './index.html',
+    './styles.css',
+    './app.js',
+    './manifest.json'
 ];
 
 // Install event - cache essential files
